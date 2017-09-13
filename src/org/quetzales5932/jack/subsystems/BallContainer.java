@@ -32,7 +32,7 @@ public class BallContainer extends Subsystem {
     private final Servo ballServo1 = RobotMap.ballContainerBallServo1;
     private final int ballServoOpenAngle = 90;
     private final int ballServoClosedAngle = 135;
-    private String state;
+    private State state;
     
     private final SpeedController spinner = RobotMap.ballContainerSpinner;
 
@@ -63,18 +63,20 @@ public class BallContainer extends Subsystem {
     public void open(){
     	ballServo1.setAngle(ballServoOpenAngle);
     	System.out.println("Pelotas abierto");
-    	state = "abierto";
+    	state = State.OPEN;
     }
     
     public void close(){
     	ballServo1.setAngle(ballServoClosedAngle);
     	System.out.println("Pelotas cerrado");
-    	state = "cerrado";
+    	state = State.CLOSED;
     }
     
-    public String getState(){
+    public State getState(){
     	return state;
     }
+    
+    private enum State{OPEN,CLOSED}
 }
 
 
